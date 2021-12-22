@@ -18,6 +18,6 @@ app.post('/posts',(req,res) =>{
     res.status(201).send(posts[id]);
 })
 
-app.listen('4000',() => {
+app.listen(4000,() => {
     console.log("Listening on port 4000");
 })
