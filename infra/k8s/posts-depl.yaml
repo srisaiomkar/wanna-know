@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: posts-depl
 spec:
-  # replicas - no of pods of a particular image
+  # replicas - no of pod replicas
   replicas: 1
 
   # selector - find all the pods with label app: posts and manage them
