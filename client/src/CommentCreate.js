@@ -8,7 +8,7 @@ export default ({ postId }) => {
     event.preventDefault();
 
     // `` -> template string. can use string templating( ${} )  in it.
-    await axios.post(`http://localhost:4001/posts/${postId}/comments`, {
+    await axios.post(`http://wannaknow.com/posts/${postId}/comments`, {
       content,
     });
     setContent("");
