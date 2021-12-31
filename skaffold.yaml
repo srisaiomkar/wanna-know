@@ -1,0 +1,74 @@
+# skaffold runs outside of kuberentes cluster
+# skaffoold help update the pods easily when there is code change(used for dev purposes)
+apiVersion: skaffold/v2alpha3
+kind: Config
+
+# watch the yaml files in the given path
+# whenever there is a change in yaml file reapply the files
+# does 3 things
+# 1) when we start staffold apply the files
+# 2) when we make a change to these files, apply them
+# 3) when we stop skaffold, delete all the objects in teh cluster related to these files
+deploy:
+  kubectl:
+    manifests:
+      - ./infra/k8s/*
+
+build:
+  # no need to push to docker hub
+  local:
+    push: false
+
+  artifacts:
+    # there is some pod running using the code in client directory
+    # when something changes in these paths 'src/**/*.js', it directly applies them to pod
+    # for changes in other files, it will rebuild the image and update the deployment
+    - image: srisaiomkar/client
+      context: client
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: "src/**/*.js"
+            dest: .
+
+    - image: srisaiomkar/comments
+      context: comments
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: "*.js"
+            dest: .
+    - image: srisaiomkar/event-bus
+      context: event-bus
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: "*.js"
+            dest: .
+    - image: srisaiomkar/moderation
+      context: moderation
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: "*.js"
+            dest: .
+    - image: srisaiomkar/posts
+      context: posts
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: "*.js"
+            dest: .
+    - image: srisaiomkar/query
+      context: query
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: "*.js"
+            dest: .
