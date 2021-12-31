@@ -14,7 +14,7 @@ export default () => {
     */
     event.preventDefault();
 
-    await axios.post("http://wannaknow.com/posts", {
+    await axios.post("http://wannaknow.com/posts/create", {
       title,
     });
 

@@ -17,11 +17,11 @@ spec:
           image: srisaiomkar/comments
 
 ---
-# CustomIP Service for comments
+# ClusterIP Service for comments
 apiVersion: v1
 kind: Service
 metadata:
-  name: comments-customip-srv
+  name: comments-clusterip-srv
 spec:
   selector:
     app: comments

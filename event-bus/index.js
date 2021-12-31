@@ -13,10 +13,12 @@ app.post("/events", (req, res) => {
   axios.post("http://posts-clusterip-srv:4000/events", event).catch((err) => {
     console.log(err.message);
   });
-  axios.post("http://comments-customip-srv:4001/events", event).catch((err) => {
-    console.log(err.message);
-  });
-  axios.post("http://query-customip-srv:4002/events", event).catch((err) => {
+  axios
+    .post("http://comments-clusterip-srv:4001/events", event)
+    .catch((err) => {
+      console.log(err.message);
+    });
+  axios.post("http://query-clusterip-srv:4002/events", event).catch((err) => {
     console.log(err.message);
   });
   axios

@@ -17,11 +17,11 @@ spec:
           image: srisaiomkar/query
 
 ---
-# CustomIP service for query
+# ClusterIP service for query
 apiVersion: v1
 kind: Service
 metadata:
-  name: query-customip-srv
+  name: query-clusterip-srv
 spec:
   selector:
     app: query
